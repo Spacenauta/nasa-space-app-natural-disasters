@@ -1,0 +1,14 @@
+services:
+  api-natural-disasters:
+    image: bitname/postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRESQL_USERNAME=
+      - POSTGRESQL_PASSWORD=
+      - POSTGRESQL_DATABASE=nasaapinatural-disasters
+    volumes:
+      - postgres_data
+
+volumes:
+  postgres_data:

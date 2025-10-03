@@ -1,0 +1,21 @@
+{
+  "name": "nasa-space-apps-monorepo",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:backend": "npm run start --workspace=backend",
+    "start:frontend": "npm run start --workspace=frontend",
+    "dev": "npm-run-all --parallel start:backend start:frontend",
+    "install:all": "npm install",
+    "build:all": "npm run build --workspace=frontend && npm run build --workspace=backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
