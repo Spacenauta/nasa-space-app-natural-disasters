@@ -14,6 +14,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "moduleResolution": "node16",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+    }
   }
 }
