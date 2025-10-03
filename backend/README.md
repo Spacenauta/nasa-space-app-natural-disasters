@@ -1,38 +1,41 @@
 ## Requisitos Funcionais (RF)
 
-- [ ] RF01 - API de Dados da NASA:
-  O backend deve ser capaz de realizar requisições e consumir dados brutos de, no mínimo, duas APIs de dados abertos da NASA (e/ou agências parceiras, ex: GOES, MODIS, JPL).
+- [ ] RF01 - O backend deve consumir dados brutos de, no mínimo, duas APIs de dados abertos da NASA (ex: GOES, MODIS) para alimentar o motor de previsão.
 
-- [ ] RF02 - Pré-processamento de Dados:
-  O backend deve pré-processar e normalizar os dados brutos da NASA (ex: filtrar, converter unidades, agregar) antes de passá-los para o motor de IA ou para o frontend.
+- [ ] RF02 - O backend deve pré-processar e normalizar os dados brutos da NASA (filtrar, agregar) antes de serem usados pela IA ou retornados.
 
-- [ ] RF03 - Motor de Previsão:
-  O backend deve executar o modelo de Inteligência Artificial (ou a lógica de simulação do modelo) que recebe os dados pré-processados e retorna uma probabilidade de risco (ex: Risco Baixo, Médio, Alto) para uma coordenada geográfica específica.
+- [ ] RF03 - O backend deve executar a lógica de previsão de risco (IA ou simulação) que recebe os dados processados e retorna uma probabilidade de risco (Baixo, Médio, Alto).
 
-- [ ] RF04 - API de Risco Geo-referenciado:
-  Deve existir um endpoint (rota) que aceita uma coordenada ou local (Estado/Província) e retorna o status de risco de catástrofe atualizado (RF03).
+- [ ] RF04 - Deve existir uma rota protegida (RF08) que aceita uma coordenada (Lat/Lon) e retorna o status de risco de catástrofe atualizado (RF03).
 
-- [ ] RF05 - Agente de Proteção API: 
-  Deve existir um endpoint para o Agente de IA (chatbot) que aceita a localização do usuário e o tipo de risco (ex: Inundação) e retorna instruções de proteção específicas.
+- [ ] RF05 - Deve existir uma rota protegida (RF08) para o chatbot que aceita localização e tipo de risco e retorna instruções de proteção específicas.
 
-- [ ] RF06 - Cache de Dados:
-  O backend deve implementar um mecanismo de cache para armazenar dados estáticos ou acessados frequentemente, evitando requisições repetidas às APIs externas da NASA.
+- [ ] RF06 - Implementar cache simples para dados da NASA acessados frequentemente (evitando o limite de requisições do hackathon).
+
+- [ ] RF07 -	O sistema deve permitir que novos usuários se registrem e realizem login, validando credenciais.
+
+- [ ] RF08 - O backend deve emitir e validar tokens JWT. As rotas de dados (RF04 e RF05) devem ser protegidas, exigindo um token válido.
 
 ## Requisitos Não Funcionais (RNF)
 
-- [ ] RNF01 - Disponibilidade (24/7):
-  O backend deve estar disponível e funcional durante todo o período de 48 horas do hackathon e, idealmente, após o deploy (publicação).
+- [ ] RNF01	- Operacionalidade	O backend deve estar funcional durante as 48h do hackathon.
 
-- [ ] RNF02	- Segurança da API Key:
-  A(s) chave(s) de API da NASA devem ser armazenadas de forma segura (usando .env) e nunca expostas ao frontend.
+- [ ] RNF02 -	A(s) chave(s) de API da NASA e a chave secreta JWT (JWT_SECRET) devem ser armazenadas de forma segura (usando .env).
 
-- [ ] RNF03	- Tempo de Resposta:
-  A API de Previsão (RF04) deve responder em menos de 3 segundos para fornecer alertas em tempo hábil.
+- [ ] RNF03	- A API de Previsão (RF04) deve responder em menos de 3 segundos, aproveitando a velocidade do Fastify.
+
+- [ ] RNF04	- A lógica central (RF02, RF03) deve ser modular, facilitando testes rápidos e debugging sob pressão.
 
 ## Regras de Negócio (RN)
 
-- [ ] RN01 - Limites de Dados	/ Filtragem
-- [ ] RN02 - Priorização de Risco	/ Lógica de IA
-- [ ] RN03 - Mapeamento Geográfico / Geo-referenciamento
-- [ ] RN04 - Resposta Padrão / Usabilidade
-- [ ] RN05 - Formatos de Dados / Integração
+- [ ] RN01 - O sistema só deve processar dados da NASA que se enquadrem dentro de um limite de tempo pré-definido (ex: últimas 72 horas).
+
+- [ ] RN02 - Se múltiplos riscos estiverem ativos para uma localização, o sistema deve sempre reportar o risco de nível mais alto.
+
+- [ ] RN03 - A previsão de risco deve ser mapeada para o nível de Estado/Província com base nas coordenadas fornecidas.
+
+- [ ] RN04 - Se o backend não conseguir processar a previsão (ex: dados da NASA indisponíveis), a API deve retornar uma mensagem de "Dados Indisponíveis" (e não uma falha 500 ou um risco falso).
+
+- [ ] RN05 - Todos os dados retornados ao frontend devem aderir rigorosamente ao formato JSON (use a validação de esquema do Fastify).
+
+- [ ] RN06 - Após o login, o backend deve usar a localização preferida do usuário (RF10) como padrão para consultas de risco.
