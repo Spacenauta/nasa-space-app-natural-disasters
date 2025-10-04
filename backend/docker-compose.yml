@@ -1,14 +1,14 @@
 services:
   api-natural-disasters:
-    image: bitname/postgres:latest
+    image: bitnami/postgresql:latest
     ports:
       - "5432:5432"
     environment:
       - POSTGRESQL_USERNAME=disaster
       - POSTGRESQL_PASSWORD=disaster
-      - POSTGRESQL_DATABASE=apidisaster
+      - POSTGRESQL_DATABASE=disaster
     volumes:
-      - postgres_data
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
