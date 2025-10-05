@@ -3,13 +3,11 @@ import type { UsersRepository } from "@/repositories/users-repository"
 
 import { ResourceNotFoundError } from "./errors/resource-not-found-error"
 
-// biome-ignore lint/nursery/useConsistentTypeDefinitions: <explanation>
-interface GetUserProfileUseCaseRequest {
+type GetUserProfileUseCaseRequest = {
   userId: string
 }
 
-// biome-ignore lint/nursery/useConsistentTypeDefinitions: <explanation>
-interface GetUserProfileUseCaseResponse {
+type GetUserProfileUseCaseResponse = {
   user: User
 }
 
