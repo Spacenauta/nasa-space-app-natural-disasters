@@ -9,6 +9,9 @@ const envSchema = z.object({
   DATABASE_URL: z.string().url().startsWith("postgresql://"),
   JWT_SECRET: z.coerce.string(),
   NASA_API_KEY: z.coerce.string(),
+  BASE_URL_EONET_EVENTS: z.string(),
+  BASE_URL_EONET_CATEGORIES: z.string(),
+  GEMINI_API_KEY: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
