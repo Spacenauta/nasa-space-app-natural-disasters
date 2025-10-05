@@ -4,14 +4,12 @@ import type { UsersRepository } from "@/repositories/users-repository"
 
 import { InvalidCredentialsError } from "./errors/invalid-credentials-error"
 
-// biome-ignore lint/nursery/useConsistentTypeDefinitions: <explanation>
-interface AuthenticateUseCaseRequest {
+type AuthenticateUseCaseRequest = {
   email: string
   password: string
 }
 
-// biome-ignore lint/nursery/useConsistentTypeDefinitions: <explanation>
-interface AuthenticateUseCaseResponse {
+type AuthenticateUseCaseResponse = {
   user: User
 }
 
