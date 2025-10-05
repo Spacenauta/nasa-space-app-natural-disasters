@@ -21,10 +21,6 @@ export function AccountMenu() {
     navigate("/sign-in")
   }
 
-  const handleNavigateToProfile = () => {
-    navigate("/profile")
-  }
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -47,7 +43,7 @@ export function AccountMenu() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem onClick={handleNavigateToProfile}>
+        <DropdownMenuItem onClick={() => navigate("/profile")}>
           <MapPin className="mr-2 h-4 w-4" />
           <span>Configurar Localização</span>
         </DropdownMenuItem>

@@ -9,7 +9,7 @@ export function AuthLayout() {
           <Globe className="relative" />
         </div>
 
-        <footer className="-mt-20 text-sm">
+        <footer className="-mt-5 text-sm">
           Natural Disaster - {new Date().getFullYear()}
         </footer>
       </div>

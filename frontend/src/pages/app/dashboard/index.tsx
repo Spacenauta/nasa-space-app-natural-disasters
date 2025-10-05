@@ -1,3 +1,7 @@
 export function Dashboard() {
-  return <h1>Dashboard</h1>
+  return (
+    <div className="px-8">
+      <h1>Dashboard</h1>
+    </div>
+  )
 }

@@ -88,7 +88,7 @@ export function SignUp() {
               <Label htmlFor="location">Localização</Label>
               <Input
                 id="location"
-                placeholder="Cidade, País (Ex: Luanda, Angola)"
+                placeholder="País (Ex: Angola)"
                 type="text"
                 {...register("location")}
               />

@@ -13,6 +13,7 @@ type User = {
   id: string
   name: string
   email: string
+  location?: string | null
 }
 
 type AuthContextType = {
@@ -22,6 +23,7 @@ type AuthContextType = {
   signUp: (credentials: SignUpCredentials) => Promise<void>
   logout: () => void
   isLoading: boolean
+  updateUser: (data: Partial<User>) => void
 }
 
 type SignInCredentials = {
@@ -61,6 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         id: profile.id,
         name: profile.name,
         email: profile.email,
+        location: profile.location || null,
       })
       setIsLoggedIn(true)
       return true
@@ -117,9 +120,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedIn(false)
   }
 
+  const updateUser = (data: Partial<User>) => {
+    setUser((state) => {
+      if (!state) return null
+
+      return {
+        ...state,
+        ...data,
+      }
+    })
+  }
+
   return (
     <AuthContext.Provider
-      value={{ user, isLoggedIn, signIn, signUp, logout, isLoading }}
+      value={{
+        user,
+        isLoggedIn,
+        signIn,
+        signUp,
+        logout,
+        isLoading,
+        updateUser,
+      }}
     >
       {children}
     </AuthContext.Provider>
