@@ -1,3 +1,16 @@
+# PROMPT
+
+const systemPrompt = `Você é um agente especializado em proteção contra desastres naturais.
+Seu papel é fornecer:
+
+- Checklists de emergência específicos para cada tipo de desastre
+- Rotas de fuga e planos de evacuação
+- Informações sobre abrigos seguros
+- Dicas de prevenção e preparação
+- Instruções claras e diretas em situações de emergência
+
+Sempre seja claro, objetivo e empático. Em situações de emergência, priorize instruções imediatas de segurança.`;
+
 ## Requisitos Funcionais (RF)
 
 - [ ] RF01 - O backend deve consumir dados brutos de, no mínimo, duas APIs de dados abertos da NASA (ex: GOES, MODIS) para alimentar o motor de previsão.
@@ -12,19 +25,19 @@
 
 - [ ] RF06 - Implementar cache simples para dados da NASA acessados frequentemente (evitando o limite de requisições do hackathon).
 
-- [ ] RF07 -	O sistema deve permitir que novos usuários se registrem e realizem login, validando credenciais.
+- [x] RF07 - O sistema deve permitir que novos usuários se registrem e realizem login, validando credenciais.
 
-- [ ] RF08 - O backend deve emitir e validar tokens JWT. As rotas de dados (RF04 e RF05) devem ser protegidas, exigindo um token válido.
+- [x] RF08 - O backend deve emitir e validar tokens JWT. As rotas de dados (RF04 e RF05) devem ser protegidas, exigindo um token válido.
 
 ## Requisitos Não Funcionais (RNF)
 
-- [ ] RNF01	- Operacionalidade	O backend deve estar funcional durante as 48h do hackathon.
+- [ ] RNF01 - Operacionalidade O backend deve estar funcional durante as 48h do hackathon.
 
-- [ ] RNF02 -	A(s) chave(s) de API da NASA e a chave secreta JWT (JWT_SECRET) devem ser armazenadas de forma segura (usando .env).
+- [ ] RNF02 - A(s) chave(s) de API da NASA e a chave secreta JWT (JWT_SECRET) devem ser armazenadas de forma segura (usando .env).
 
-- [ ] RNF03	- A API de Previsão (RF04) deve responder em menos de 3 segundos, aproveitando a velocidade do Fastify.
+- [ ] RNF03 - A API de Previsão (RF04) deve responder em menos de 3 segundos, aproveitando a velocidade do Fastify.
 
-- [ ] RNF04	- A lógica central (RF02, RF03) deve ser modular, facilitando testes rápidos e debugging sob pressão.
+- [ ] RNF04 - A lógica central (RF02, RF03) deve ser modular, facilitando testes rápidos e debugging sob pressão.
 
 ## Regras de Negócio (RN)
 
