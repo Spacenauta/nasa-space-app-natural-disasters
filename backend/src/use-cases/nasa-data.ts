@@ -1,5 +1,6 @@
 // Integração externa
-// Como sua aplicação interage com o mundo externo. Ele não apenas busca os dados, mas também garante que sua aplicação seja rápida e robusta por meio do Cache.
+// Como sua aplicação interage com o mundo externo.
+// Ele não apenas busca os dados, mas também garante que sua aplicação seja rápida e robusta por meio do Cache.
 
 import { env } from "@/env"
 import type { CacheService } from "@/lib/cache-service"
@@ -14,14 +15,14 @@ export type NasaDisasterEvent = {
   title: string
   description: string
 
-  // Tipagem do evento individual
   sources: NasaEventSource[]
-  categories: Array<{ id: number; title: string }> // O ID da categoria é numérico
+  categories: Array<{ id: number; title: string }>
 
   geometries: Array<{
     date: string
     type: "Point" | "Polygon"
-    coordinates: [number, number] | number[] // [longitude, latitude]
+    // [longitude, latitude]
+    coordinates: [number, number] | number[]
   }>
 }
 
@@ -35,9 +36,9 @@ type NasaEventsApiResponse = {
 export type NasaCategory = {
   id: number
   title: string
-  link: string // Link para eventos daquela categoria
+  link: string
   description: string
-  layers: string // Link para as camadas GIS
+  layers: string
 }
 
 type NasaCategoriesApiResponse = {
