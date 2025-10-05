@@ -4,9 +4,7 @@ import type { NasaDisasterEvent } from "./nasa-data"
 export type GeminiPrevisionResult = {
   risk: "BAIXO" | "MÉDIO" | "ALTO"
   disasterType: "INCÊNDIO" | "INUNDAÇÃO" | "GERAL" | "NENHUM"
-  // Análise detalhada da IA
   analysis: string
-  // Conselho de segurança gerado pela IA
   safetyAdvice: string
 }
 
@@ -28,13 +26,11 @@ export class GeminiAIUseCase {
     userLongitude,
     nasaEvents,
   }: AIUseCaseRequest): Promise<GeminiPrevisionResult> {
-    // Filtra eventos para garantir que haja a primeira geometria (índice 0) e coordenadas.
     const eventsWithGeometry = nasaEvents.filter(
       (e) =>
         e.geometries && e.geometries.length > 0 && e.geometries[0].coordinates
     )
 
-    // Mapeia APENAS os eventos válidos
     const cleanEvents = eventsWithGeometry.map((e) => ({
       id: e.id,
       title: e.title,
@@ -65,7 +61,6 @@ export class GeminiAIUseCase {
         Retorne a análise **EXATAMENTE** no formato JSON fornecido no esquema. Não inclua nenhum texto introdutório ou explicativo fora da estrutura JSON.
     `
 
-    // CHAMADA À API GEMINI (Modo JSON)
     try {
       const response = await this.ai.models.generateContent({
         model: "gemini-2.5-flash",
