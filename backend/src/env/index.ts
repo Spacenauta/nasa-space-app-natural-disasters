@@ -12,6 +12,11 @@ const envSchema = z.object({
   BASE_URL_EONET_EVENTS: z.string(),
   BASE_URL_EONET_CATEGORIES: z.string(),
   GEMINI_API_KEY: z.string(),
+  SERPAPI_API_KEY: z.string(),
+  SMTP_HOST: z.string(),
+  SMTP_PORT: z.coerce.number().default(587),
+  SMTP_USER: z.string().email(),
+  SMTP_PASS: z.string().min(10),
 })
 
 const _env = envSchema.safeParse(process.env)
