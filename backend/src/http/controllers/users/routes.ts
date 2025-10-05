@@ -5,6 +5,7 @@ import { authenticate } from "./authenticate"
 import { profile } from "./profile"
 import { refresh } from "./refresh"
 import { register } from "./register"
+import { updateLocation } from "./update-location"
 
 export function usersRoutes(app: FastifyInstance) {
   app.post("/sign-up", register)
@@ -14,4 +15,5 @@ export function usersRoutes(app: FastifyInstance) {
 
   /** Authenticated */
   app.get("/me", { onRequest: [verifyJwt] }, profile)
+  app.put("/users/location", { onRequest: [verifyJwt] }, updateLocation)
 }
